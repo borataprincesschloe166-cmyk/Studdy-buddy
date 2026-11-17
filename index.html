@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Study Buddy</title>
+  <title>Study Buddy | Study Dashboard</title>
   <link rel="stylesheet" href="style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,17 +14,17 @@
 <body class="auth-checking">
   <div class="app">
     <aside class="sidebar">
-      <a class="brand" href="#top">
+      <a class="brand" href="index.html">
         <span class="brand-icon">✦</span>
         <span>Study Buddy</span>
       </a>
 
       <p class="nav-label">YOUR SPACE</p>
       <nav>
-        <a href="#dashboard" data-view="dashboard">⌂ <span>Dashboard</span></a>
-        <a href="#tasks" data-view="tasks">☑ <span>Tasks</span></a>
-        <a href="#focus" data-view="focus">◷ <span>Focus timer</span></a>
-        <a href="#notes" data-view="notes">▤ <span>Notes</span></a>
+        <a href="index.html" data-page-link="dashboard">⌂ <span>Dashboard</span></a>
+        <a href="tasks.html" data-page-link="tasks">☑ <span>Tasks</span></a>
+        <a href="focus.html" data-page-link="focus">◷ <span>Focus timer</span></a>
+        <a href="notes.html" data-page-link="notes">▤ <span>Notes</span></a>
       </nav>
 
       <div class="sidebar-note">
@@ -38,7 +38,7 @@
       <header class="topbar">
         <div>
           <p class="eyebrow">YOUR CALM STUDY SPACE</p>
-          <h1>Study Dashboard</h1>
+          <h1 class="page-title">Study Dashboard</h1>
         </div>
         <div class="guest-badge">
           <span class="guest-status-dot" aria-hidden="true"></span>
@@ -47,103 +47,99 @@
         </div>
       </header>
 
-      <section class="welcome-card">
-        <div>
-          <p class="eyebrow">A FRESH START</p>
-          <h2>You’ve got this ☀️</h2>
-          <p>Pick one small thing to focus on. Your progress starts here.</p>
-        </div>
-        <div class="welcome-art" aria-hidden="true">🪴</div>
-      </section>
-
-      <section class="stats">
-        <article class="stat-card">
-          <span class="stat-icon mint">☑</span>
-          <div><strong id="taskCount">0</strong><small>Tasks on your list</small></div>
-        </article>
-        <article class="stat-card">
-          <span class="stat-icon peach">✓</span>
-          <div><strong id="completedCount">0</strong><small>Tasks completed</small></div>
-        </article>
-        <article class="stat-card">
-          <span class="stat-icon lilac">◷</span>
-          <div><strong id="sessionCount">0</strong><small>Focus sessions today</small></div>
-        </article>
-      </section>
-
-      <section class="content-grid">
-        <article class="card task-card" id="tasks">
-          <div class="card-heading">
-            <div>
-              <p class="eyebrow">MAKE A LITTLE PROGRESS</p>
-              <h2>Today’s tasks</h2>
-            </div>
-            <span class="pill">My list</span>
-          </div>
-
-          <form class="add-task" id="taskForm">
-            <input id="taskInput" type="text" maxlength="100"
-                   placeholder="What do you want to work on?" required>
-            <button class="button primary" type="submit">Add task</button>
-          </form>
-
-          <p class="message" id="taskMessage">Checking your sign-in…</p>
-          <div class="task-list" id="taskList"></div>
-        </article>
-
-        <article class="card focus-card" id="focus">
-          <p class="eyebrow">ONE STEP AT A TIME</p>
-          <h2>Focus session</h2>
-          <p class="muted">Work for 25 minutes, then take a little break.</p>
-          <div class="timer" id="timer">25:00</div>
-          <div class="timer-buttons">
-            <button class="button primary" id="timerButton" type="button">Start focusing</button>
-            <button class="button light" id="resetTimerButton" type="button">Reset</button>
-          </div>
-        </article>
-
-        <article class="card subjects-card">
-          <p class="eyebrow">KEEP LEARNING</p>
-          <h2>My subjects</h2>
-
-          <div class="subject">
-            <div><span>🧬 Biology</span><strong>72%</strong></div>
-            <div class="progress"><i style="width:72%"></i></div>
-          </div>
-          <div class="subject">
-            <div><span>📐 Mathematics</span><strong>48%</strong></div>
-            <div class="progress"><i style="width:48%"></i></div>
-          </div>
-          <div class="subject">
-            <div><span>📜 History</span><strong>85%</strong></div>
-            <div class="progress"><i style="width:85%"></i></div>
-          </div>
-        </article>
-
-        <article class="card notes-card" id="notes">
-          <div class="card-heading">
-            <div>
-              <p class="eyebrow">SAVE A THOUGHT</p>
-              <h2>Quick notes</h2>
-            </div>
-            <span>📝</span>
-          </div>
-          <textarea id="notesInput" placeholder="Write an idea or reminder..."></textarea>
-          <p class="message" id="notesMessage">Notes save in this browser.</p>
-        </article>
-
-        <article class="card tip-card">
-          <span class="tip-icon">💡</span>
+      <div class="page-content">
+        <section class="welcome-card">
           <div>
-            <p class="eyebrow">A LITTLE STUDY TIP</p>
-            <h2 id="studyTip">Try explaining a tricky idea in your own words.</h2>
-            <button class="text-button" id="newTipButton" type="button">Another tip →</button>
+            <p class="eyebrow">A FRESH START</p>
+            <h2>You’ve got this ☀️</h2>
+            <p>Pick one small thing to focus on. Your progress starts here.</p>
           </div>
-        </article>
-      </section>
+          <div class="welcome-art" aria-hidden="true">🪴</div>
+        </section>
+
+        <section class="stats">
+          <article class="stat-card">
+            <span class="stat-icon mint">☑</span>
+            <div><strong id="taskCount">0</strong><small>Tasks on your list</small></div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon peach">✓</span>
+            <div><strong id="completedCount">0</strong><small>Tasks completed</small></div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon lilac">◷</span>
+            <div><strong id="sessionCount">0</strong><small>Focus sessions today</small></div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="card task-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">MAKE A LITTLE PROGRESS</p>
+                <h2>Today’s tasks</h2>
+              </div>
+              <a class="page-link" href="tasks.html">Open task list →</a>
+            </div>
+            <p class="message" id="dashboardTaskMessage">Loading your tasks…</p>
+            <div class="task-preview" id="dashboardTaskPreview"></div>
+          </article>
+
+          <article class="card focus-card">
+            <p class="eyebrow">ONE STEP AT A TIME</p>
+            <h2>Focus session</h2>
+            <p class="muted">Work for 25 minutes, then take a little break.</p>
+            <a class="button primary page-link" href="focus.html">Go to focus timer →</a>
+          </article>
+
+          <article class="card subjects-card">
+            <p class="eyebrow">KEEP LEARNING</p>
+            <h2>My subjects</h2>
+
+            <div class="subject">
+              <div><span>🧬 Biology</span><strong>72%</strong></div>
+              <div class="progress"><i style="width:72%"></i></div>
+            </div>
+            <div class="subject">
+              <div><span>📐 Mathematics</span><strong>48%</strong></div>
+              <div class="progress"><i style="width:48%"></i></div>
+            </div>
+            <div class="subject">
+              <div><span>📜 History</span><strong>85%</strong></div>
+              <div class="progress"><i style="width:85%"></i></div>
+            </div>
+          </article>
+
+          <article class="card notes-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">SAVE A THOUGHT</p>
+                <h2>Quick notes</h2>
+              </div>
+              <a class="page-link" href="notes.html">Open notes →</a>
+            </div>
+            <p class="dashboard-notes-preview" id="dashboardNotesPreview">
+              Your saved notes will appear here.
+            </p>
+          </article>
+
+          <article class="card tip-card">
+            <span class="tip-icon">💡</span>
+            <div>
+              <p class="eyebrow">A LITTLE STUDY TIP</p>
+              <h2 id="studyTip">Try explaining a tricky idea in your own words.</h2>
+              <button class="text-button" id="newTipButton" type="button">Another tip →</button>
+            </div>
+          </article>
+        </section>
+      </div>
 
       <footer>Made for your next little win 🌱</footer>
     </main>
   </div>
+
+  <script>
+    document.querySelector('[data-page-link="dashboard"]').classList.add("active");
+  </script>
 </body>
 </html>

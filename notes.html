@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Buddy | Notes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="auth.js" defer></script>
+</head>
+<body class="auth-checking">
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">✦</span>
+        <span>Study Buddy</span>
+      </a>
+      <p class="nav-label">YOUR SPACE</p>
+      <nav>
+        <a href="index.html" data-page-link="dashboard">⌂ <span>Dashboard</span></a>
+        <a href="tasks.html" data-page-link="tasks">☑ <span>Tasks</span></a>
+        <a href="focus.html" data-page-link="focus">◷ <span>Focus timer</span></a>
+        <a href="notes.html" data-page-link="notes">▤ <span>Notes</span></a>
+      </nav>
+      <div class="sidebar-note">
+        <span>🌱</span>
+        <strong>Little steps count.</strong>
+        <small>Keep showing up for yourself.</small>
+      </div>
+    </aside>
+
+    <main class="main" id="top">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR CALM STUDY SPACE</p>
+          <h1 class="page-title">Notes</h1>
+        </div>
+        <div class="guest-badge">
+          <span class="guest-status-dot" aria-hidden="true"></span>
+          <span id="accountLabel">Signed in</span>
+          <button class="auth-badge-btn" id="logoutButton" type="button">Log out</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="card notes-card">
+          <p class="eyebrow">SAVE A THOUGHT</p>
+          <h2>My notes</h2>
+          <p class="page-intro">Your notes are saved in this browser on this device.</p>
+          <textarea id="notesInput" placeholder="Write an idea, reminder, or something you learned..."></textarea>
+          <p class="message" id="notesMessage">Notes save as you type.</p>
+        </section>
+      </div>
+
+      <footer>Made for your next little win 🌱</footer>
+    </main>
+  </div>
+
+  <script>
+    document.querySelector('[data-page-link="notes"]').classList.add("active");
+  </script>
+</body>
+</html>

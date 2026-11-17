@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Buddy | Focus timer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="auth.js" defer></script>
+</head>
+<body class="auth-checking">
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">✦</span>
+        <span>Study Buddy</span>
+      </a>
+      <p class="nav-label">YOUR SPACE</p>
+      <nav>
+        <a href="index.html" data-page-link="dashboard">⌂ <span>Dashboard</span></a>
+        <a href="tasks.html" data-page-link="tasks">☑ <span>Tasks</span></a>
+        <a href="focus.html" data-page-link="focus">◷ <span>Focus timer</span></a>
+        <a href="notes.html" data-page-link="notes">▤ <span>Notes</span></a>
+      </nav>
+      <div class="sidebar-note">
+        <span>🌱</span>
+        <strong>Little steps count.</strong>
+        <small>Keep showing up for yourself.</small>
+      </div>
+    </aside>
+
+    <main class="main" id="top">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR CALM STUDY SPACE</p>
+          <h1 class="page-title">Focus timer</h1>
+        </div>
+        <div class="guest-badge">
+          <span class="guest-status-dot" aria-hidden="true"></span>
+          <span id="accountLabel">Signed in</span>
+          <button class="auth-badge-btn" id="logoutButton" type="button">Log out</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="card focus-card focus-page-card">
+          <p class="eyebrow">ONE STEP AT A TIME</p>
+          <h2>Focus session</h2>
+          <p class="muted">Work for 25 minutes, then take a little break.</p>
+          <div class="timer" id="timer">25:00</div>
+
+          <div class="timer-buttons">
+            <button class="button primary" id="timerButton" type="button">Start focusing</button>
+            <button class="button light" id="resetTimerButton" type="button">Reset</button>
+          </div>
+
+          <div class="focus-session-total">
+            Focus sessions today
+            <strong id="sessionCount">0</strong>
+          </div>
+        </section>
+      </div>
+
+      <footer>Made for your next little win 🌱</footer>
+    </main>
+  </div>
+
+  <script>
+    document.querySelector('[data-page-link="focus"]').classList.add("active");
+  </script>
+</body>
+</html>
