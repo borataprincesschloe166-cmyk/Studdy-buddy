@@ -1,11 +1,3 @@
-const SUPABASE_URL = "https://ssrkubxbiwhyqvmmahkc.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_KX7y0BloW7iI421o0qGs7Q_M-etqBEe";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
 const $ = selector => document.querySelector(selector);
 
 let currentUser = null;
@@ -19,25 +11,25 @@ function showMessage(element, text, isError = false) {
   element.classList.toggle("error", isError);
 }
 
-async function startGuestWorkspace() {
-  showMessage($("#taskMessage"), "Connecting to Supabase…");
+async function startAuthenticatedWorkspace() {
+  showMessage($("#taskMessage"), "Checking your sign-in…");
 
-  const { data: sessionData, error: sessionError } =
-    await supabaseClient.auth.getSession();
+  const { data, error } = await supabaseClient.auth.getSession();
+  if (error) throw error;
 
-  if (sessionError) throw sessionError;
-
-  if (sessionData.session) {
-    currentUser = sessionData.session.user;
-  } else {
-    const { data, error } = await supabaseClient.auth.signInAnonymously();
-    if (error) throw error;
-    currentUser = data.user;
+  const user = data.session && data.session.user;
+  if (!user || user.is_anonymous) {
+    location.replace("login.html");
+    return;
   }
 
+  currentUser = user;
+  document.body.classList.remove("auth-checking");
+  const name = user.user_metadata?.name || user.email;
+  const label = $("#accountLabel");
+  if (label) label.textContent = name || "Signed in";
   await loadTasks();
 }
-
 async function loadTasks() {
   const { data, error } = await supabaseClient
     .from("tasks")
@@ -241,7 +233,12 @@ $("#newTipButton").addEventListener("click", () => {
 
 displayTimer();
 
-startGuestWorkspace().catch(error => {
+startAuthenticatedWorkspace().catch(error => {
+  if (!currentUser) {
+    location.replace("login.html");
+    return;
+  }
+  document.body.classList.remove("auth-checking");
   showMessage(
     $("#taskMessage"),
     `Could not connect: ${error.message}. Check Supabase settings and the tasks table.`,

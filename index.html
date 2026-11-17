@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js" defer></script>
   <script src="app.js" defer></script>
   <script src="auth.js" defer></script>
 </head>
-<body>
+<body class="auth-checking">
   <div class="app">
     <aside class="sidebar">
       <a class="brand" href="#top">
@@ -20,11 +21,11 @@
 
       <p class="nav-label">YOUR SPACE</p>
       <nav>
-  <a href="#dashboard" data-view="dashboard">⌂ <span>Dashboard</span></a>
-  <a href="#tasks" data-view="tasks">☑ <span>Tasks</span></a>
-  <a href="#focus" data-view="focus">◷ <span>Focus timer</span></a>
-  <a href="#notes" data-view="notes">▤ <span>Notes</span></a>
-</nav>
+        <a href="#dashboard" data-view="dashboard">⌂ <span>Dashboard</span></a>
+        <a href="#tasks" data-view="tasks">☑ <span>Tasks</span></a>
+        <a href="#focus" data-view="focus">◷ <span>Focus timer</span></a>
+        <a href="#notes" data-view="notes">▤ <span>Notes</span></a>
+      </nav>
 
       <div class="sidebar-note">
         <span>🌱</span>
@@ -39,7 +40,11 @@
           <p class="eyebrow">YOUR CALM STUDY SPACE</p>
           <h1>Study Dashboard</h1>
         </div>
-        <div class="guest-badge"><span></span> Private guest workspace</div>
+        <div class="guest-badge">
+          <span class="guest-status-dot" aria-hidden="true"></span>
+          <span id="accountLabel">Signed in</span>
+          <button class="auth-badge-btn" id="logoutButton" type="button">Log out</button>
+        </div>
       </header>
 
       <section class="welcome-card">
@@ -82,7 +87,7 @@
             <button class="button primary" type="submit">Add task</button>
           </form>
 
-          <p class="message" id="taskMessage">Connecting to your study space…</p>
+          <p class="message" id="taskMessage">Checking your sign-in…</p>
           <div class="task-list" id="taskList"></div>
         </article>
 

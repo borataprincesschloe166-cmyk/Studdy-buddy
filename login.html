@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | Study Buddy</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.auth-page { min-height:100vh; display:grid; place-items:center; padding:24px; }
+    .auth-shell { width:min(100%, 440px); }
+    .auth-brand { display:flex; align-items:center; gap:11px; margin:0 0 22px 5px; color:var(--purple); font-size:20px; font-weight:700; }
+    .auth-brand-icon { display:grid; width:42px; height:42px; place-items:center; border-radius:14px; background:#f0ecff; font-size:24px; }
+    .auth-page-card { padding:34px; border:1px solid var(--line); border-radius:22px; background:white; box-shadow:var(--shadow); }
+    .auth-page-card h1 { margin:0 0 8px; font-size:28px; letter-spacing:-.6px; }
+    .auth-page-card .auth-intro { margin:0 0 24px; color:var(--muted); line-height:1.5; }
+    .auth-page-card label { display:block; margin:0 0 7px; font-size:14px; font-weight:700; }
+    .auth-page-card input { width:100%; margin:0 0 16px; padding:13px 14px; border:1px solid var(--line); border-radius:11px; font:inherit; }
+    .auth-page-card input:focus { outline:2px solid var(--purple); outline-offset:1px; }
+    .auth-submit { width:100%; padding:13px; border:0; border-radius:11px; background:var(--purple); color:white; font:inherit; font-weight:700; }
+    .auth-submit:disabled { opacity:.65; }
+    .auth-switch-row { margin:18px 0 0; text-align:center; color:var(--muted); font-size:14px; }
+    .auth-text-button { padding:0; border:0; background:none; color:var(--purple-dark); font:inherit; font-weight:700; }
+    .auth-forgot-row { margin:14px 0 0; text-align:center; }
+    .auth-message { min-height:20px; margin:0 0 12px; color:#2e7d4f; font-size:14px; line-height:1.45; }
+    .auth-message.error { color:#b3261e; }
+    @media(max-width:480px) { .auth-page-card { padding:25px 21px; } }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js" defer></script>
+  <script src="auth.js" defer></script>
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <div class="auth-brand"><span class="auth-brand-icon">✦</span><span>Study Buddy</span></div>
+    <section class="auth-page-card" aria-labelledby="authTitle">
+      <p class="eyebrow">YOUR CALM STUDY SPACE</p>
+      <h1 id="authTitle">Welcome back</h1>
+      <p class="auth-intro" id="authSubtitle">Sign in to continue to your study dashboard.</p>
+      <form id="authForm">
+        <div id="nameField" hidden>
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" autocomplete="name" placeholder="Your name">
+        </div>
+        <label for="emailInput">Email</label>
+        <input id="emailInput" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="passwordInput">Password</label>
+        <input id="passwordInput" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required>
+        <p class="auth-message" id="authMessage" role="status" aria-live="polite"></p>
+        <button class="auth-submit" id="authSubmit" type="submit">Sign in</button>
+      </form>
+      <p class="auth-forgot-row"><button class="auth-text-button" id="forgotPassword" type="button">Forgot password?</button></p>
+      <p class="auth-switch-row"><span id="authSwitchCopy">New to Study Buddy?</span> <button class="auth-text-button" id="authSwitch" type="button">Create account</button></p>
+    </section>
+  </main>
+</body>
+</html>

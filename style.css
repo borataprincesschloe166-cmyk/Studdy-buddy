@@ -130,12 +130,24 @@ h1, h2, p { margin-top: 0; }
   font-size: 11px;
 }
 
-.guest-badge span {
+.guest-badge .guest-status-dot {
   width: 7px;
+  min-width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #79ae77;
 }
+
+.auth-badge-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--purple);
+  font-size: inherit;
+  font-weight: 700;
+}
+
+body.auth-checking .app { visibility: hidden; }
 
 .welcome-card {
   display: flex;
